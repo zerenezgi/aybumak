@@ -1,0 +1,2 @@
+# aybumak
+learning journal
