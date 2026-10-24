@@ -41,3 +41,14 @@ claude.ai
 https://www.movable-type.co.uk/scripts/latlong.html
 Calculate Distance using Haversine Formula in Python - https://www.youtube.com/watch?v=Brl73oaLU60
 Haversine Python lesson solution - https://www.youtube.com/watch?v=tPt_g2-hNLU&t=1s
+
+# 24 Ekim 2026
+- Süre: 40 dakika
+- Ne yaptım: Görev Y2'ye başladım. OpenCV 5.0.0'ı kurdum. Kamera ve video okuma konusunda temel denemeler yaptım ve videonun oynatma hızının waitKey süresi ile, kameranın hızının ise kameranın kendisiyle belirlendiğini öğrendim. 
+- Nerede takıldım: waitKey(25) yerine waitKey(1) yazınca kamerada fark görmedim. Nedenini anlayamadım. Ayrıca kameradaki görüntü ayna gibi değildi bunu merak ettim.
+- Nasıl çözdüm: waitKey komutunu video dosyasıyla denedim ve hızlandığını gördüm. Daha sonra claude ile konuşurken kameranın maksimum hızının donanım tarafından belirlendiğini, ayna görüntüsü için ise flip komutunu kullanmam gerektiğini öğrendim.
+- Kaynaklar:
+https://docs.opencv.org/3.4.20/dd/d43/tutorial_py_video_display.html
+claude.ai
+https://docs.opencv.org/4.13.0/d2/de8/group__core__array.html#gaca7be533e3dac7feb70fc60635adf441
+https://docs.opencv.org/4.13.0/d7/dfc/group__highgui.html#ga5628525ad33f52eab17feebcfba38bd7

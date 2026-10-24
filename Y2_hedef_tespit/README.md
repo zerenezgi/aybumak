@@ -1,0 +1,1 @@
+Video dosyasının oynatma hızını waitKey süresi belirliyor, kamerada ise hızı kameranın kendisi belirliyor.
