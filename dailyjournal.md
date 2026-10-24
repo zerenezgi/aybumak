@@ -45,8 +45,8 @@ Haversine Python lesson solution - https://www.youtube.com/watch?v=tPt_g2-hNLU&t
 # 24 Ekim 2026
 - Süre: 40 dakika
 - Ne yaptım: Görev Y2'ye başladım. OpenCV 5.0.0'ı kurdum. Kamera ve video okuma konusunda temel denemeler yaptım ve videonun oynatma hızının waitKey süresi ile, kameranın hızının ise kameranın kendisiyle belirlendiğini öğrendim. 
-- Nerede takıldım: waitKey(25) yerine waitKey(1) yazınca kamerada fark görmedim. Nedenini anlayamadım. Ayrıca kameradaki görüntü ayna gibi değildi bunu merak ettim.
-- Nasıl çözdüm: waitKey komutunu video dosyasıyla denedim ve hızlandığını gördüm. Daha sonra claude ile konuşurken kameranın maksimum hızının donanım tarafından belirlendiğini, ayna görüntüsü için ise flip komutunu kullanmam gerektiğini öğrendim.
+- Nerede takıldım: waitKey(25) yerine waitKey(1) yazınca kamerada fark görmedim, nedenini anlayamadım. Ayrıca kameradaki görüntünün ayna gibi olmamasını merak ettim.
+- Nasıl çözdüm: waitKey'i video dosyasıyla denedim ve videonun hızlandığını gördüm. Sonra Claude ile konuşurken kameranın kendi hızında kare ürettiğini, bu yüzden waitKey süresini kısaltmanın kamerayı hızlandırmadığını öğrendim. Video dosyasında ise kareleri ne kadar hızlı istersem o kadar hızlı geliyor. Kamera görüntüsünün ayna gibi değil olduğu gibi geldiğini, ayna etkisi istersem `cv2.flip` kullanabileceğimi de öğrendim. Denedim ama hedef sapmasının sağ-sol yönü karışmasın diye kapalı bıraktım.
 - Kaynaklar:
 https://docs.opencv.org/3.4.20/dd/d43/tutorial_py_video_display.html
 claude.ai
