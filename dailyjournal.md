@@ -52,3 +52,12 @@ https://docs.opencv.org/3.4.20/dd/d43/tutorial_py_video_display.html
 claude.ai
 https://docs.opencv.org/4.13.0/d2/de8/group__core__array.html#gaca7be533e3dac7feb70fc60635adf441
 https://docs.opencv.org/4.13.0/d7/dfc/group__highgui.html#ga5628525ad33f52eab17feebcfba38bd7
+
+# 25 Ekim 2026
+- Süre: 30 dakika
+- Ne yaptım: RGB ve HSV arasındaki farkı öğrendim. RGB'de bir renk gölgeye düşünce üç kanalın (R, G, B) değeri de değiştiği için renk filtresi bozulabiliyor. HSV'de ise renk (Hue) parlaklıktan (Value) ayrı tutulduğu için görüntü işlemede HSV tercih ediliyor. Ayrıca Claude'un yardımıyla kırmızı rengi maskelemeyi öğrendim.
+- Nerede takıldım: Maskede sadece kırmızı değil kırmızıya yakın renklerin de beyaz çıkması aklıma takıldı.
+- Nasıl çözdüm: Bugün çözmedim, sadece gözlemledim. Yarın kutu, merkez ve en büyük nesneyi seçme adımlarıyla bu sorunu azaltmaya bakacağım.
+- Kaynaklar:
+claude.ai
+RGB vs HSV Renkler Nedir? - https://www.youtube.com/watch?v=7YyUyS4c_t4
