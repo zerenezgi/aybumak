@@ -61,3 +61,7 @@ https://docs.opencv.org/4.13.0/d7/dfc/group__highgui.html#ga5628525ad33f52eab17f
 - Kaynaklar:
 claude.ai
 RGB vs HSV Renkler Nedir? - https://www.youtube.com/watch?v=7YyUyS4c_t4
+
+# 26 Ekim 2026
+- Süre: 0 dakika
+- Bilgisayara erişimim olmadı. (Kendi bilgisayarım henüz gelmediği için anneminkini kullanıyorum bu yüzden o bilgisayardayken maalesef çalışamıyorum.)
