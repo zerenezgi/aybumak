@@ -65,3 +65,30 @@ RGB vs HSV Renkler Nedir? - https://www.youtube.com/watch?v=7YyUyS4c_t4
 # 26 Ekim 2026
 - Süre: 0 dakika
 - Bilgisayara erişimim olmadı. (Kendi bilgisayarım henüz gelmediği için anneminkini kullanıyorum bu yüzden o bilgisayardayken maalesef çalışamıyorum.)
+
+# 27 Ekim 2026
+- Süre: 0 saat
+- Kendi bilgisayarım henüz gelmediği için çalışamadım.
+
+# 28 Ekim 2026
+- Süre: 8 saat
+- Ne yaptım: Yeni bilgisayarıma Windows kurdum.
+- Nerede takıldım: Microsoft hesabım kilitlendi, bilgisayara giriş yapamadım. (sabah 5'e kadar çözüm bulmaya uğraştım)
+- Nasıl çözdüm: Bir YouTube videosundan öğrendiğim yöntemle terminale girip yeni bir kullanıcı hesabı açtım, sorunlu hesabı kaldırdım.
+- Kaynaklar:
+Fix Your account has been disabled Please see your system administrator in Windows 11 / 10 🛠️✔️ - https://www.youtube.com/watch?v=AFVtagXCj9U&lc=UgxA-ZbWN4l3_ZbwgUN4AaABAg.AcXP43IfsIEAc_zhCk9iZ4
+
+# 29 Ekim 2026
+- Süre: 30 dakika
+- Ne yaptım: Git ve Python'u kurdum, GitHub deposunu getirdim, OpenCV 5.0.0'ı kurdum.
+- Nerede takıldım: `pip` komutu tanınmadı.
+- Nasıl çözdüm: `python -m pip install opencv-python` yazdım.
+- Kaynaklar:
+claude.ai
+
+# 30 Ekim 2026
+- Süre:
+- Ne yaptım:
+- Nerede takıldım:
+- Nasıl çözdüm:
+- Kaynaklar:
