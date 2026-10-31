@@ -14,14 +14,19 @@ MERKEZ_RENGI = (255, 0, 0)    # mavi: hedefin merkezi
 YAZI_RENGI = (255, 255, 255)  # beyaz: yazı
 YAZI_CIZGI_RENGI = (0, 0, 0)  # siyah: yazının dış çizgisi
 
-
 def yazi_yaz(resim, metin, konum):
-    """Yazıyı siyah dış çizgili beyaz renkte yazar; her arka planda okunur."""
-    # Önce kalın siyah yazı (dış çizgi)
-    cv2.putText(resim, metin, konum, cv2.FONT_HERSHEY_SIMPLEX, 0.7, YAZI_CIZGI_RENGI, 4)
-    # Üstüne ince beyaz yazı
-    cv2.putText(resim, metin, konum, cv2.FONT_HERSHEY_SIMPLEX, 0.7, YAZI_RENGI, 2)
+    """Yazının arkasına siyah bir kutu çizip üstüne beyaz yazı yazar; her arka planda okunur."""
+    # Yazının kaplayacağı genişlik ve yüksekliği ölç
+    (yazi_genislik, yazi_yukseklik), taban = cv2.getTextSize(
+        metin, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
+    x, y = konum
 
+    # Yazının arkasına dolu siyah dikdörtgen çiz (5 piksel boşluk bırakarak)
+    cv2.rectangle(resim, (x - 5, y - yazi_yukseklik - 5),
+                  (x + yazi_genislik + 5, y + taban + 5), YAZI_CIZGI_RENGI, -1)
+
+    # Üstüne beyaz yazıyı yaz
+    cv2.putText(resim, metin, konum, cv2.FONT_HERSHEY_SIMPLEX, 0.7, YAZI_RENGI, 2)
 
 # 0 yazılırsa kamera açılır; video için dosya yolu yazılır
 kaynak = input("Kamera için 0, video için dosya yolunu yaz: ").strip().strip('"')
