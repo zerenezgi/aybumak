@@ -87,8 +87,20 @@ Fix Your account has been disabled Please see your system administrator in Windo
 claude.ai
 
 # 30 Ekim 2026
-- Süre:
-- Ne yaptım:
-- Nerede takıldım:
-- Nasıl çözdüm:
+- Süre: 1,5 saat
+- Ne yaptım: 27-29 Ekim günlüklerini düzelttim. Y2'de kutu, merkez, sapma ve FPS kodunu ekledim ve kamerayla denedim. `S_ALT` değerini 150 ve 180 yaparak ten rengi sorununu azaltmayı denedim. Oyuncak ejderha ile kutuyu yan yana koyup programın alanı büyük olanı seçtiğini gördüm. `waitKey` değerini kamerada ve videoda denedim.
+- Nerede takıldım: Kutu ekranda görünmüyordu çünkü `imshow` satırı çizimlerden önceydi. Ten rengi maskeye giriyordu. `S_ALT`'i yükseltince kutunun soluk kırmızı kısımları da kayboldu. Videoda sapma ve FPS yazıları görünmüyordu.
+- Nasıl çözdüm: `imshow` satırlarını çizimlerden sonraya taşıdım. `S_ALT`'i 120'de bıraktım çünkü hedefi kaçırmamayı tercih ettim. Videodaki yazıların nedenini o gün bulamadım.
 - Kaynaklar:
+claude.ai
+
+# 31 Ekim 2026
+- Süre: 4,5 saat
+- Ne yaptım: Yapay zekâ video aracıyla (Gemini Omni) üç test videosu hazırladım: beyaz ışıkta hareket eden top, loş ışık, gün ışığında hareket eden küp+top. Programı bunlarla test edip sonuçları tabloya yazdım. Ekran kaydı çektim. Y2 README'sini yazdım. Yazıların okunurluğunu iyileştirdim.
+- Nerede takıldım: Test ettiğim bir videoda ekrandaki FPS ve sapma değerini gösteren yazılar görünmüyordu. İlk tahminim video çözünürlüğüydü ama yanlış çıktı.  Loş ışıkta hedef bulunamadı, birbirine yaklaşan iki nesne tek nesne gibi algılandı. README'deki program adımlarındaki kelimeleri (kare, piksel, kontür) anlamakta zorlandım.
+- Nasıl çözdüm: Yazı rengi arka planla aynı olduğu için kayboluyordu, yazının arkasına siyah kutu çizen bir yöntem kullandım. Loş ışık ve yakın nesne sorunlarını çözmedim, README'de "bozulduğu yerler" altına yazdım. Kare, piksel ve kontür kavramlarını Claude'dan temelden öğrendim.
+- Kaynaklar:
+- Gemini Omni: test videolarını üretti.
+- How to Detect Colors in OpenCV [Python] - https://www.youtube.com/watch?v=cMJwqxskyek
+- https://github.com/CreepyD246/Simple-Color-Detection-with-Python-OpenCV
+- https://docs.opencv.org/3.4.20/d4/d73/tutorial_py_contours_begin.html
