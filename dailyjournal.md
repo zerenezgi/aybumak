@@ -74,7 +74,7 @@ RGB vs HSV Renkler Nedir? - https://www.youtube.com/watch?v=7YyUyS4c_t4
 - Süre: 8 saat
 - Ne yaptım: Yeni bilgisayarıma Windows kurdum.
 - Nerede takıldım: Microsoft hesabım kilitlendi, bilgisayara giriş yapamadım. (sabah 5'e kadar çözüm bulmaya uğraştım)
-- Nasıl çözdüm: Bir YouTube videosundan öğrendiğim yöntemle terminale girip yeni bir kullanıcı hesabı açtım, sorunlu hesabı kaldırdım.
+- Nasıl çözdüm: Bir YouTube videosundan öğrendiğim yöntemle terminale girip yeni bir kullanıcı hesabı açtım, sorunlu hesabı kaldırdım. (Süreçle alakasız ama günlüğe eklemek istedim.)
 - Kaynaklar:
 Fix Your account has been disabled Please see your system administrator in Windows 11 / 10 🛠️✔️ - https://www.youtube.com/watch?v=AFVtagXCj9U&lc=UgxA-ZbWN4l3_ZbwgUN4AaABAg.AcXP43IfsIEAc_zhCk9iZ4
 
@@ -97,7 +97,7 @@ claude.ai
 # 31 Ekim 2026
 - Süre: 4,5 saat
 - Ne yaptım: Yapay zekâ video aracıyla (Gemini Omni) üç test videosu hazırladım: beyaz ışıkta hareket eden top, loş ışık, gün ışığında hareket eden küp+top. Programı bunlarla test edip sonuçları tabloya yazdım. Ekran kaydı çektim. Y2 README'sini yazdım. Yazıların okunurluğunu iyileştirdim.
-- Nerede takıldım: Test ettiğim bir videoda ekrandaki FPS ve sapma değerini gösteren yazılar görünmüyordu. İlk tahminim video çözünürlüğüydü ama yanlış çıktı.  Loş ışıkta hedef bulunamadı, birbirine yaklaşan iki nesne tek nesne gibi algılandı. README'deki program adımlarındaki k# elimeleri (kare, piksel, kontür) anlamakta zorlandım.
+- Nerede takıldım: Test ettiğim bir videoda ekrandaki FPS ve sapma değerini gösteren yazılar görünmüyordu. İlk tahminim video çözünürlüğüydü ama yanlış çıktı.  Loş ışıkta hedef bulunamadı, birbirine yaklaşan iki nesne tek nesne gibi algılandı. README'deki program adımlarındaki kelimeleri (kare, piksel, kontür) anlamakta zorlandım.
 - Nasıl çözdüm: Yazı rengi arka planla aynı olduğu için kayboluyordu, yazının arkasına siyah kutu çizen bir yöntem kullandım. Loş ışık ve yakın nesne sorunlarını çözmedim, README'de "bozulduğu yerler" altına yazdım. Kare, piksel ve kontür kavramlarını Claude'dan temelden öğrendim.
 - Kaynaklar:
 claude.ai
@@ -107,8 +107,8 @@ https://github.com/CreepyD246/Simple-Color-Detection-with-Python-OpenCV
 https://docs.opencv.org/3.4.20/d4/d73/tutorial_py_contours_begin.html
 
 # 1 Kasım 2026
-- Süre: 4,5+ saat (form süresi bitene kadar devam)
-- Ne yaptım: Y3'ü bitirdim. Görüntünün ortasına alanı %25 olan bir vuruş alanı çizdim, hedefin merkezinin içeride olup olmadığına baktım. Hedef 4 saniye kesintisiz içeride kalınca KILITLENDI yazan bir sayaç yaptım. Hedef 0,2 saniyeden kısa kaybolursa sayaç sıfırlanmıyor. Kilitlenmenin başlangıç ve bitiş zamanını bir dosyaya yazdırdım. `M` tuşuyla açılan bir QR okuma modu ekledim, test videosunu çektim ve Y3 README'sini yazdım. Sonra Y4'e geçtim. `paket.py` ile 44 baytlık ikili bir paket yaptım (başlık ve checksum dahil). `arac.py` ile saniyede 10 paketi UDP ile gönderdim (%5'ini bozarak, %2'sini hiç göndermeyerek), `yer.py` ile alıp çözdüm, bozuk ve kayıp paketleri saydım. İkili paket ile CSV boyutunu karşılaştırdım (44 bayta karşı ortalama 65,4 bayt). UDP ile TCP'nin farkını araştırdım ve Y4 README'sini yazdım.
+- Süre: 7,5 saat
+- Ne yaptım: Y3'ü bitirdim. Görüntünün ortasına alanı %25 olan bir vuruş alanı çizdim, hedefin merkezinin içeride olup olmadığına baktım. Hedef 4 saniye kesintisiz içeride kalınca KILITLENDI yazan bir sayaç yaptım. Hedef 0,2 saniyeden kısa kaybolursa sayaç sıfırlanmıyor. Kilitlenmenin başlangıç ve bitiş zamanını bir dosyaya yazdırdım. `M` tuşuyla açılan bir QR okuma modu ekledim, test videosunu çektim ve Y3 README'sini yazdım. Sonra Y4'e geçtim. `paket.py` ile 44 baytlık ikili bir paket yaptım (başlık ve checksum dahil). `arac.py` ile saniyede 10 paketi UDP ile gönderdim (%5'ini bozarak, %2'sini hiç göndermeyerek), `yer.py` ile alıp çözdüm, bozuk ve kayıp paketleri saydım. İkili paket ile CSV boyutunu karşılaştırdım (44 bayta karşı ortalama 65,4 bayt). UDP ile TCP'nin farkını araştırdım ve Y4 README'sini yazdım. Süreç raporunu tamamladım.
 - Nerede takıldım:
   - Kayıt kodunu eklerken içinde `None` geçen birkaç değişken olduğu için neyi nereye yazacağımı karıştırdım.
   - Kayıt dosyasında kilitlenme 6 saniye görünüyordu, ekranda ise sayaç 10 yazıyordu. Nedenini anlamadım.
