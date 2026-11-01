@@ -107,10 +107,26 @@ https://github.com/CreepyD246/Simple-Color-Detection-with-Python-OpenCV
 https://docs.opencv.org/3.4.20/d4/d73/tutorial_py_contours_begin.html
 
 # 1 Kasım 2026
-- Süre:
-- Ne yaptım: 
+- Süre: 4,5+ saat (form süresi bitene kadar devam)
+- Ne yaptım: Y3'ü bitirdim. Görüntünün ortasına alanı %25 olan bir vuruş alanı çizdim, hedefin merkezinin içeride olup olmadığına baktım. Hedef 4 saniye kesintisiz içeride kalınca KILITLENDI yazan bir sayaç yaptım. Hedef 0,2 saniyeden kısa kaybolursa sayaç sıfırlanmıyor. Kilitlenmenin başlangıç ve bitiş zamanını bir dosyaya yazdırdım. `M` tuşuyla açılan bir QR okuma modu ekledim, test videosunu çektim ve Y3 README'sini yazdım. Sonra Y4'e geçtim. `paket.py` ile 44 baytlık ikili bir paket yaptım (başlık ve checksum dahil). `arac.py` ile saniyede 10 paketi UDP ile gönderdim (%5'ini bozarak, %2'sini hiç göndermeyerek), `yer.py` ile alıp çözdüm, bozuk ve kayıp paketleri saydım. İkili paket ile CSV boyutunu karşılaştırdım (44 bayta karşı ortalama 65,4 bayt). UDP ile TCP'nin farkını araştırdım ve Y4 README'sini yazdım.
 - Nerede takıldım:
+  - Kayıt kodunu eklerken içinde `None` geçen birkaç değişken olduğu için neyi nereye yazacağımı karıştırdım.
+  - Kayıt dosyasında kilitlenme 6 saniye görünüyordu, ekranda ise sayaç 10 yazıyordu. Nedenini anlamadım.
+  - Y4'te paket, bayt, başlık, checksum gibi kavramları anlayamadım.
+  - `yer.py` ben ikinci terminali açana kadar 3 saniye sonra kapanıyordu.
+  - İlk denemede yanlışlıkla `arac.py`'yi önce çalıştırdım ve paketler kayboldu.
+  - Terminalde `__pycache__` içindeki bir dosya "binary" uyarısı verdi.
+  - İkinci çalıştırmada kayıp paket tahmini 3 çıktı ama `arac.py` 4 paketi hiç göndermediğini söylüyordu.
+  - Hızlı hareket eden top için `waitKey`'i 60 yapınca FPS düştü ve video yavaşladı.
 - Nasıl çözdüm:
+  - Claude'dan kodun eklenmiş halinin tamamını istedim, kendi kodumla karşılaştırıp yerlerini buldum.
+  - Kayıttaki başlangıç, hedefin alana girdiği an değil, KILITLENDI'nin çıktığı an (sayacın 4. saniyesi). 10 − 4 = 6 saniye, yani kod doğru çalışıyordu. README'ye de yazdım.
+  - Claude'dan baştan, mektup benzetmesiyle anlatmasını istedim. `paket.py`'nin hex çıktısını kutu kutu okuyunca oturdu.
+  - Zaman aşımını, ilk paket gelene kadar sonsuz bekleyecek, ilk paketten sonra 3 saniye olacak şekilde değiştirdim.
+  - UDP'de gönderenin alıcı dinliyor mu diye bakmadığını bu şekilde gördüm.
+  - Python'un kendi oluşturduğu derlenmiş bir kopya olduğunu öğrendim, silmeme ya da commit etmeme gerek yok.
+  - Son paket (#300) kaybolunca alıcı bunu fark edemiyor, çünkü kaybı gelen en büyük paket numarasından hesaplıyor. Bunu README'nin sınırlamalar kısmına yazdım.
+  - Sayaç gerçek saati ölçtüğü için videonun saniyesiyle uyuşmayabileceğini README'ye not ettim.
 - Kaynaklar:
 claude.ai
 State Machine Explained: A Beginner’s Guide - https://www.youtube.com/watch?v=sosnUnI-vco
