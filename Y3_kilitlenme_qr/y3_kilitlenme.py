@@ -9,8 +9,10 @@ V_ALT = 70       # parlaklık alt sınırı: düşük değerlerde karanlık böl
 MIN_ALAN = 500   # bundan küçük kırmızı lekeler gürültü sayılıp yok sayılır (piksel)
 KENAR_ORANI = 0.5               # vuruş alanının her kenarı görüntünün yarısı kadar (alan = %25)
 VURUS_RENGI = (0, 255, 255)     # sarı: vuruş alanı dikdörtgeni
+KILIT_SURESI = 4.0      # hedef bu kadar saniye kesintisiz alanda kalırsa kilitlenir
+KAYIP_TOLERANSI = 0.2   # hedef bundan kısa süre kaybolursa sayaç sıfırlanmaz (saniye)
 
-# --- Renkler (OpenCV BGR sırası kullanır) ---
+# --- (OpenCV BGR sırası kullanır) ---
 KUTU_RENGI = (255, 0, 255)    # mor-pembe: hedefi çevreleyen kutu
 MERKEZ_RENGI = (255, 0, 0)    # mavi: hedefin merkezi
 YAZI_RENGI = (255, 255, 255)  # beyaz: yazı
@@ -46,6 +48,8 @@ if not cap.isOpened():
     exit()
 
 onceki_zaman = time.time()  # FPS hesabı için bir önceki karenin zamanı
+icerde_baslangic = None   # hedefin alana girdiği an; alanda değilse None
+son_icerde_zamani = 0     # hedefin alanda en son görüldüğü an
 
 while True:
     # Tek bir kare (resim) oku; basarili False ise video bitti demektir
@@ -125,6 +129,33 @@ while True:
 
     # Sapma yazısı (OpenCV yazı tipi Türkçe karakter desteklemez, o yüzden ASCII)
     yazi_yaz(kare, sapma_metni, (10, 30))
+
+    zaman_simdi = time.time()
+
+    if hedef_icinde:
+        # Hedef içeride: en son görülme zamanını güncelle
+        son_icerde_zamani = zaman_simdi
+        # Sayaç henüz başlamadıysa şimdi başlat
+        if icerde_baslangic is None:
+            icerde_baslangic = zaman_simdi
+    else:
+        # Hedef içeride değil: tolerans süresinden uzun mu kayıp?
+        if icerde_baslangic is not None and zaman_simdi - son_icerde_zamani > KAYIP_TOLERANSI:
+            icerde_baslangic = None  # tolerans aşıldı, sayaç sıfırlanır
+
+    # Sayaçta gösterilecek süre
+    if icerde_baslangic is not None:
+        gecen_sure = zaman_simdi - icerde_baslangic
+    else:
+        gecen_sure = 0.0
+
+    # Süre kilit süresine ulaştıysa kilitli
+    kilitli = gecen_sure >= KILIT_SURESI
+
+    # Sayacı ve kilit durumunu ekrana yaz (OpenCV yazı tipi Türkçe harfleri çizemez, o yüzden KILITLENDI)
+    yazi_yaz(kare, f"Sayac: {gecen_sure:.1f} / {KILIT_SURESI:.0f} sn", (10, 120))
+    if kilitli:
+        yazi_yaz(kare, "KILITLENDI", (10, 150))
 
     # FPS: iki kare arasındaki süreden hesaplanır
     simdi = time.time()
