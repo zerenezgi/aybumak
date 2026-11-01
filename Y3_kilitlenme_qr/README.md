@@ -94,3 +94,5 @@ arıyor (OpenCV'nin `QRCodeDetector` aracıyla). QR bulunursa çevresine
 - https://www.youtube.com/watch?v=sosnUnI-vco
 - Claude (yapay zekâ asistanı): kodun yapısını ve kilitlenme mantığını
   adım adım anlattı, ben yazıp denedim.
+- Capcut: Kilitlenme kayıtları ve QR'ları test ettiğim videoları oluşturmada araç olarak kullandım.
+- ibisPaint: QR kodlarını oluşturmamı sağladı.
