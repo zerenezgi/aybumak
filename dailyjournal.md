@@ -19,7 +19,7 @@ https://www.scribd.com/document/256875348/Haversine-Formula
 https://www.movable-type.co.uk/scripts/latlong-vincenty.html
 https://getmylocations.com/blog/haversine-vs-vincenty
 https://www.movable-type.co.uk/scripts/latlong.html
-https://ibonav.aero/learn/havacilikta-kullanilan-yonler/
+https://ibonav.aero/learn/havacilikta-kullanilan-yonler/ ⭐
 https://lnkd.in/p/dtWmfcpy
 
 # 22 Ekim 2026
@@ -121,3 +121,6 @@ What is the struct Module in Python - https://youtu.be/qFOaV6uMhFQ?si=v8dPPt1A3u
 https://docs.python.org/3/library/struct.html
 https://en.wikipedia.org/wiki/Checksum
 https://www.cloudflare.com/learning/ddos/glossary/user-datagram-protocol-udp/
+https://www-pynetlabs-com.translate.goog/udp-vs-tcp/?_x_tr_sl=en&_x_tr_tl=tr&_x_tr_hl=tr&_x_tr_pto=sge
+https://www-avast-com.translate.goog/c-tcp-vs-udp-difference?_x_tr_sl=en&_x_tr_tl=tr&_x_tr_hl=tr&_x_tr_pto=sge
+(CRC) Cyclic Redundancy Check Yöntemi (Ders: Veri İletişimi) - https://youtu.be/N0kr_eqBrwE?si=-LVTS7aidetd5-Ut ⭐
