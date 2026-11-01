@@ -120,3 +120,4 @@ https://docs.opencv.org/3.4.20/de/dc3/classcv_1_1QRCodeDetector.html
 What is the struct Module in Python - https://youtu.be/qFOaV6uMhFQ?si=v8dPPt1A3uXpLfOp
 https://docs.python.org/3/library/struct.html
 https://en.wikipedia.org/wiki/Checksum
+https://www.cloudflare.com/learning/ddos/glossary/user-datagram-protocol-udp/
