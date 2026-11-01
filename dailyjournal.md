@@ -113,3 +113,5 @@ claude.ai
 - Kaynaklar:
 State Machine Explained: A Beginner’s Guide - https://www.youtube.com/watch?v=sosnUnI-vco
 https://docs.opencv.org/4.13.0/dc/da5/tutorial_py_drawing_functions.html
+QR Kod Nasıl Çalışır? | Basit ve Hızlı Anlatım - https://youtu.be/vL7NEgGfoEk?si=Y7J3P7DsxpIfPFD3
+https://docs.opencv.org/3.4.20/de/dc3/classcv_1_1QRCodeDetector.html
