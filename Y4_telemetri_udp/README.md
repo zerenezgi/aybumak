@@ -1,0 +1,1 @@
+Struct modülü Python'daki normal verileri (sayı, yazı vb.) bilgisayarın, disklerin veya internet ağlarının doğrudan okuyabileceği ham (saf/binary) byte verisine dönüştüren bir araçtır.

@@ -100,18 +100,23 @@ claude.ai
 - Nerede takıldım: Test ettiğim bir videoda ekrandaki FPS ve sapma değerini gösteren yazılar görünmüyordu. İlk tahminim video çözünürlüğüydü ama yanlış çıktı.  Loş ışıkta hedef bulunamadı, birbirine yaklaşan iki nesne tek nesne gibi algılandı. README'deki program adımlarındaki k# elimeleri (kare, piksel, kontür) anlamakta zorlandım.
 - Nasıl çözdüm: Yazı rengi arka planla aynı olduğu için kayboluyordu, yazının arkasına siyah kutu çizen bir yöntem kullandım. Loş ışık ve yakın nesne sorunlarını çözmedim, README'de "bozulduğu yerler" altına yazdım. Kare, piksel ve kontür kavramlarını Claude'dan temelden öğrendim.
 - Kaynaklar:
-- Gemini Omni: test videolarını üretti.
-- How to Detect Colors in OpenCV [Python] - https://www.youtube.com/watch?v=cMJwqxskyek
-- https://github.com/CreepyD246/Simple-Color-Detection-with-Python-OpenCV
-- https://docs.opencv.org/3.4.20/d4/d73/tutorial_py_contours_begin.html
+claude.ai
+Gemini Omni: test videolarını üretti.
+How to Detect Colors in OpenCV [Python] - https://www.youtube.com/watch?v=cMJwqxskyek
+https://github.com/CreepyD246/Simple-Color-Detection-with-Python-OpenCV
+https://docs.opencv.org/3.4.20/d4/d73/tutorial_py_contours_begin.html
 
 # 1 Kasım 2026
 - Süre:
-- Ne yaptım:
+- Ne yaptım: 
 - Nerede takıldım:
 - Nasıl çözdüm:
 - Kaynaklar:
+claude.ai
 State Machine Explained: A Beginner’s Guide - https://www.youtube.com/watch?v=sosnUnI-vco
 https://docs.opencv.org/4.13.0/dc/da5/tutorial_py_drawing_functions.html
 QR Kod Nasıl Çalışır? | Basit ve Hızlı Anlatım - https://youtu.be/vL7NEgGfoEk?si=Y7J3P7DsxpIfPFD3
 https://docs.opencv.org/3.4.20/de/dc3/classcv_1_1QRCodeDetector.html
+What is the struct Module in Python - https://youtu.be/qFOaV6uMhFQ?si=v8dPPt1A3uXpLfOp
+https://docs.python.org/3/library/struct.html
+https://en.wikipedia.org/wiki/Checksum
