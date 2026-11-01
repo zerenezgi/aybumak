@@ -1,3 +1,5 @@
+from datetime import datetime  # kilitlenme zamanını saat:dakika:saniye olarak yazmak için
+import os  # kayıt dosyasının yolunu bulmak için
 import cv2
 import numpy as np  # renk aralıklarını sayı dizisi olarak vermek için
 import time  # FPS hesabı için
@@ -12,11 +14,14 @@ VURUS_RENGI = (0, 255, 255)     # sarı: vuruş alanı dikdörtgeni
 KILIT_SURESI = 4.0      # hedef bu kadar saniye kesintisiz alanda kalırsa kilitlenir
 KAYIP_TOLERANSI = 0.2   # hedef bundan kısa süre kaybolursa sayaç sıfırlanmaz (saniye)
 
-# --- (OpenCV BGR sırası kullanır) ---
+# Kayıt dosyası: bu kodun bulunduğu klasörde oluşur (hangi klasörden çalıştırılırsa çalıştırılsın)
+KAYIT_DOSYASI = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kilitlenme_kayitlari.txt")
+
+# --- Renkler (OpenCV BGR sırası kullanır) ---
 KUTU_RENGI = (255, 0, 255)    # mor-pembe: hedefi çevreleyen kutu
 MERKEZ_RENGI = (255, 0, 0)    # mavi: hedefin merkezi
 YAZI_RENGI = (255, 255, 255)  # beyaz: yazı
-YAZI_CIZGI_RENGI = (0, 0, 0)  # siyah: yazının dış çizgisi
+YAZI_CIZGI_RENGI = (0, 0, 0)  # siyah: yazının arkasındaki kutu
 
 def yazi_yaz(resim, metin, konum):
     """Yazının arkasına siyah bir kutu çizip üstüne beyaz yazı yazar; her arka planda okunur."""
@@ -31,6 +36,12 @@ def yazi_yaz(resim, metin, konum):
 
     # Üstüne beyaz yazıyı yaz
     cv2.putText(resim, metin, konum, cv2.FONT_HERSHEY_SIMPLEX, 0.7, YAZI_RENGI, 2)
+
+def kayit_yaz(baslangic, bitis):
+    """Kilitlenme başlangıç ve bitiş zamanını dosyanın sonuna ekler."""
+    # "a" modu: dosyayı silmeden sonuna ekler
+    with open(KAYIT_DOSYASI, "a", encoding="utf-8") as dosya:
+        dosya.write(f"KİLİTLENDİ | Başlangıç: {baslangic:%H:%M:%S} | Bitiş: {bitis:%H:%M:%S}\n")
 
 # 0 yazılırsa kamera açılır; video için dosya yolu yazılır
 kaynak = input("Kamera için 0, video için dosya yolunu yaz: ").strip().strip('"')
@@ -50,6 +61,11 @@ if not cap.isOpened():
 onceki_zaman = time.time()  # FPS hesabı için bir önceki karenin zamanı
 icerde_baslangic = None   # hedefin alana girdiği an; alanda değilse None
 son_icerde_zamani = 0     # hedefin alanda en son görüldüğü an
+onceki_kilitli = False    # bir önceki karede kilitli miydi?
+kilit_baslangic = None    # kilitlenmenin başladığı an
+qr_modu = False                       # False: hedef modu, True: QR modu
+qr_okuyucu = cv2.QRCodeDetector()     # QR kodu bulup çözen OpenCV aracı
+son_qr_metni = ""                     # terminale aynı yazıyı tekrar tekrar basmamak için
 
 while True:
     # Tek bir kare (resim) oku; basarili False ise video bitti demektir
@@ -63,7 +79,33 @@ while True:
     kare = cv2.resize(kare, None, fx=oran, fy=oran)
 
     # Ayna görüntüsü kullanılmıyor: sapmanın sağ/sol yönü karışmasın diye
+    # QR modunda hedef tespiti yapılmaz, sadece QR aranır
+    if qr_modu:
+        # QR kodu bul ve içindeki yazıyı çöz (metin: yazı, noktalar: köşe koordinatları)
+        qr_metni, qr_noktalar, _ = qr_okuyucu.detectAndDecode(kare)
 
+        # QR bulunduysa çevresine çerçeve çiz
+        if qr_noktalar is not None:
+            kose_noktalari = qr_noktalar.astype(int).reshape(-1, 2)
+            cv2.polylines(kare, [kose_noktalari], True, KUTU_RENGI, 3)
+
+        # İçerik okunabildiyse ekrana yaz, değişince terminale de yaz
+        if qr_metni:
+            yazi_yaz(kare, f"QR: {qr_metni}", (10, 30))
+            if qr_metni != son_qr_metni:
+                print("QR içeriği:", qr_metni)
+                son_qr_metni = qr_metni
+        else:
+            yazi_yaz(kare, "QR modu: QR kodu goster", (10, 30))
+        yazi_yaz(kare, "M: hedef moduna don", (10, 60))
+
+        cv2.imshow("Goruntu", kare)
+        tus = cv2.waitKey(25) & 0xFF
+        if tus == ord("q"):
+            break
+        if tus == ord("m"):
+            qr_modu = False
+        continue  # döngünün geri kalanını (hedef tespiti) atla
     # Kareyi BGR'den HSV'ye çevir (OpenCV renkleri RGB değil BGR sırasında tutar)
     hsv = cv2.cvtColor(kare, cv2.COLOR_BGR2HSV)
 
@@ -88,6 +130,7 @@ while True:
     goruntu_merkez_x = kare_genislik // 2
     goruntu_merkez_y = kare_yukseklik // 2
     cv2.circle(kare, (goruntu_merkez_x, goruntu_merkez_y), 4, YAZI_RENGI, -1)  # beyaz nokta: görüntü merkezi
+
     # Vuruş alanı: görüntünün ortasında, alanı görüntü alanının %25'i olan dikdörtgen
     vurus_genislik = int(kare_genislik * KENAR_ORANI)
     vurus_yukseklik = int(kare_yukseklik * KENAR_ORANI)
@@ -124,6 +167,7 @@ while True:
             sapma_x = merkez_x - goruntu_merkez_x
             sapma_y = merkez_y - goruntu_merkez_y
             sapma_metni = f"Sapma: x={sapma_x} y={sapma_y}"
+
             # Hedefin merkezi vuruş alanının içinde mi?
             hedef_icinde = (vurus_x1 <= merkez_x <= vurus_x2 and vurus_y1 <= merkez_y <= vurus_y2)
 
@@ -152,6 +196,13 @@ while True:
     # Süre kilit süresine ulaştıysa kilitli
     kilitli = gecen_sure >= KILIT_SURESI
 
+    # Kilit durumu değiştiyse zamanı kaydet
+    if kilitli and not onceki_kilitli:
+        kilit_baslangic = datetime.now()               # kilitlenme anı
+    elif not kilitli and onceki_kilitli:
+        kayit_yaz(kilit_baslangic, datetime.now())     # kilit düştü, bitiş zamanı kaydedilir
+    onceki_kilitli = kilitli
+
     # Sayacı ve kilit durumunu ekrana yaz (OpenCV yazı tipi Türkçe harfleri çizemez, o yüzden KILITLENDI)
     yazi_yaz(kare, f"Sayac: {gecen_sure:.1f} / {KILIT_SURESI:.0f} sn", (10, 120))
     if kilitli:
@@ -162,16 +213,24 @@ while True:
     fps = 1 / max(simdi - onceki_zaman, 1e-6)  # sıfıra bölmeyi engelle
     onceki_zaman = simdi
     yazi_yaz(kare, f"FPS: {fps:.1f}", (10, 60))
+
     # Hedefin vuruş alanında olup olmadığını ekrana yaz
     yazi_yaz(kare, "Alan: ICINDE" if hedef_icinde else "Alan: DISINDA", (10, 90))
-
+    yazi_yaz(kare, "M: QR modu", (10, 180))
     # Çizimler bittikten sonra ekranda göster
     cv2.imshow("Maske", maske)
     cv2.imshow("Goruntu", kare)
 
-    # 25 milisaniye bekle; q'ya basılırsa döngüden çık
-    if cv2.waitKey(25) & 0xFF == ord("q"):
+    # q: çıkış, m: QR moduna geç
+    tus = cv2.waitKey(25) & 0xFF
+    if tus == ord("q"):
         break
+    if tus == ord("m"):
+        qr_modu = True
+
+# Program kilitliyken kapandıysa bitiş zamanını da kaydet
+if onceki_kilitli:
+    kayit_yaz(kilit_baslangic, datetime.now())
 
 # Kamerayı serbest bırak ve pencereleri kapat
 cap.release()
